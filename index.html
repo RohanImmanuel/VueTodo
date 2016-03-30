@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vue Todo</title>
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<main id="main">
+		<input type="text" id="new" placeholder="New Todo..." v-model="new" v-on:keyup.enter="addTodo" autofocus>
+		
+		<div class="todo-list">
+			<p v-if="todos.length < 1" class="empty"><i class="fa fa-arrow-circle-up"></i>Create a new task</p>
+		
+			<p v-for="todo in todos" v-on:click="toggel($index)" class="todo {{ todo.done ? 'done': ''}}">
+				<span>{{ todo.text }}</span>
+				<i v-on:click="removeTodo($index)" class="close fa fa-times"></i>
+			</p>
+		</div>
+	</main>
+	
+	<div id="loading"></div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.20/vue.min.js"></script>
+	<script src="js/todo.js"></script>
+</body>
+</html>
